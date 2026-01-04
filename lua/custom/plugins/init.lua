@@ -15,5 +15,10 @@ return {
     version = '^6', -- Recommended
     lazy = false, -- This plugin is already lazy
   },
+  {
+    'vyfor/cord.nvim',
+    build = ':Cord update',
+    -- opts = {}
+  },
   { 'b0o/schemastore.nvim' },
 }
