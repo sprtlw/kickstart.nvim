@@ -151,6 +151,7 @@ vim.o.splitbelow = true
 --   and `:help lua-options-guide`
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.fillchars:append { eob = ' ' }
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
@@ -677,7 +678,15 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        rust_analyzer = {},
+        -- rust_analyzer = {},
+        jsonls = {
+          settings = {
+            json = {
+              schemas = require('schemastore').json.schemas(),
+              validate = { enable = true },
+            },
+          },
+        },
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -902,6 +911,7 @@ require('lazy').setup({
       vim.g.gruvbox_material_background = 'hard'
       -- etc
       vim.g.gruvbox_material_enable_italic = true
+
       vim.cmd.colorscheme 'gruvbox-material'
     end,
   },
