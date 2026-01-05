@@ -355,6 +355,13 @@ require('lazy').setup({
         },
       },
 
+      -- Transparency
+      win = {
+        wo = {
+          winblend = 30,
+        },
+      },
+
       -- Document existing key chains
       spec = {
         { '<leader>s', group = '[S]earch' },
