@@ -232,6 +232,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Keep CursorLine background transparent for all themes
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = function()
+    vim.api.nvim_set_hl(0, 'CursorLine', { bg = 'none' })
+    vim.api.nvim_set_hl(0, 'CursorLineNr', { bold = true })
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
