@@ -32,4 +32,5 @@ return {
     -- opts = {}
   },
   { 'b0o/schemastore.nvim' },
+  { 'preservim/nerdcommenter' },
 }
