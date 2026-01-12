@@ -255,7 +255,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Keep CursorLine background transparent for all themes
+-- Bold cursorline for all themes
 vim.api.nvim_create_autocmd('ColorScheme', {
   group = vim.api.nvim_create_augroup('kickstart-colorscheme', { clear = true }),
   callback = function()
