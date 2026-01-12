@@ -255,7 +255,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Bold cursorline for all themes
+-- Bold CursorLine for all themes
 vim.api.nvim_create_autocmd('ColorScheme', {
   group = vim.api.nvim_create_augroup('kickstart-colorscheme', { clear = true }),
   callback = function()
