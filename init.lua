@@ -377,13 +377,6 @@ require('lazy').setup({
         },
       },
 
-      -- Transparency
-      win = {
-        wo = {
-          winblend = 30,
-        },
-      },
-
       -- Document existing key chains
       spec = {
         { '<leader>s', group = '[S]earch' },
@@ -483,7 +476,6 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 30,
           previewer = false,
         })
       end, { desc = '[/] Fuzzily search in current buffer' })
@@ -908,19 +900,12 @@ require('lazy').setup({
       },
 
       completion = {
-        -- Transparency
-        menu = {
-          winblend = 30,
-        },
 
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
         documentation = {
           auto_show = false,
           auto_show_delay_ms = 500,
-          window = {
-            winblend = 30,
-          },
         },
       },
 
