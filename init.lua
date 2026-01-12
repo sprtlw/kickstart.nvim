@@ -196,11 +196,14 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
--- Insert Mode
+-- Insert mode
 vim.keymap.set('i', '<C-h>', '<left>', { desc = 'Move left in insert' })
 vim.keymap.set('i', '<C-j>', '<down>', { desc = 'Move down in insert' })
 vim.keymap.set('i', '<C-k>', '<up>', { desc = 'Move up in insert' })
 vim.keymap.set('i', '<C-l>', '<right>', { desc = 'Move right in insert' })
+-- Map escape sequence from Windows Terminal to <C-;>
+vim.cmd 'set <C-;>=\\e[59;5u'
+vim.keymap.set('i', '<C-;>', '<Esc>A;<Esc>a', { desc = 'Add semicolon at end of line' })
 
 -- Nerd Commenter
 vim.keymap.set({ 'n', 'v' }, '<leader>cc', '<Plug>NERDCommenterComment', { desc = 'Comment' })
