@@ -25,6 +25,30 @@ vim.keymap.set('n', '<leader>Q', ':bd<CR>', { desc = 'Close current buffer' })
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
+-- Insert mode
+vim.keymap.set('i', '<C-h>', '<left>', { desc = 'Move left in insert' })
+vim.keymap.set('i', '<C-j>', '<down>', { desc = 'Move down in insert' })
+vim.keymap.set('i', '<C-k>', '<up>', { desc = 'Move up in insert' })
+vim.keymap.set('i', '<C-l>', '<right>', { desc = 'Move right in insert' })
+-- Map escape sequence from Windows Terminal to <C-;>
+vim.cmd 'set <C-;>=\\e[59;5u'
+vim.keymap.set('i', '<C-;>', '<Esc>A;<Esc>a', { desc = 'Add semicolon at end of line' })
+
+-- Nerd Commenter
+vim.keymap.set({ 'n', 'v' }, '<leader>cc', '<Plug>NERDCommenterComment', { desc = 'Comment' })
+vim.keymap.set({ 'n', 'v' }, '<leader>cn', '<Plug>NERDCommenterNested', { desc = 'Comment (Nested)' })
+vim.keymap.set({ 'n', 'v' }, '<leader>ct', '<Plug>NERDCommenterToggle', { desc = 'Toggle Comment' })
+vim.keymap.set({ 'n', 'v' }, '<leader>cm', '<Plug>NERDCommenterMinimal', { desc = 'Comment (Minimal)' })
+vim.keymap.set({ 'n', 'v' }, '<leader>ci', '<Plug>NERDCommenterInvert', { desc = 'Invert Comment' })
+vim.keymap.set({ 'n', 'v' }, '<leader>cs', '<Plug>NERDCommenterSexy', { desc = 'Sexy Comment' })
+vim.keymap.set({ 'n', 'v' }, '<leader>cy', '<Plug>NERDCommenterYank', { desc = 'Yank & Comment' })
+vim.keymap.set({ 'n', 'v' }, '<leader>c$', '<Plug>NERDCommenterToEOL', { desc = 'Comment to EOL' })
+vim.keymap.set({ 'n', 'v' }, '<leader>cA', '<Plug>NERDCommenterAppend', { desc = 'Append Comment' })
+vim.keymap.set({ 'n', 'v' }, '<leader>ca', '<Plug>NERDCommenterAltDelims', { desc = 'Alt Delimiters' })
+vim.keymap.set({ 'n', 'v' }, '<leader>cu', '<Plug>NERDCommenterUncomment', { desc = 'Uncomment' })
+vim.keymap.set({ 'n', 'v' }, '<leader>cl', '<Plug>NERDCommenterAlignLeft', { desc = 'Align Left' })
+vim.keymap.set({ 'n', 'v' }, '<leader>cb', '<Plug>NERDCommenterAlignBoth', { desc = 'Align Both' })
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --

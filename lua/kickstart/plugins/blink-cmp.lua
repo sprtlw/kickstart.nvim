@@ -57,7 +57,13 @@ return {
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'default',
+        preset = 'enter',
+
+        -- Disable C-k keybind (insert mode overlap)
+        ['<C-k>'] = { 'fallback' },
+        -- Rebind Previous Functionality
+        ['<C-p>'] = { 'select_prev', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'fallback' },
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -76,22 +82,9 @@ return {
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
-          buffer = {
-            -- Make buffer compeletions appear at the end.
-            score_offset = -100,
-            enabled = function()
-              -- Filetypes for which buffer completions are enabled; add filetypes to extend:
-              local enabled_filetypes = {
-                'markdown',
-                'text',
-              }
-              local filetype = vim.bo.filetype
-              return vim.tbl_contains(enabled_filetypes, filetype)
-            end,
-          },
         },
       },
 
@@ -104,7 +97,7 @@ return {
       -- the rust implementation via `'prefer_rust_with_warning'`
       --
       -- See :h blink-cmp-config-fuzzy for more information
-      fuzzy = { implementation = 'lua' },
+      fuzzy = { implementation = 'prefer_rust_with_warning' },
 
       -- Shows a signature help window while you type arguments for a function
       signature = { enabled = true },
