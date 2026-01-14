@@ -120,6 +120,11 @@ end)
 -- Enable break indent
 vim.o.breakindent = true
 
+-- Enable hidden buffers
+--  This is required for plugins like toggleterm to keep the terminal process running
+--  when the window is closed (toggled).
+vim.o.hidden = true
+
 -- Configure default indentation
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
