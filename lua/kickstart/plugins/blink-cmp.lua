@@ -35,7 +35,7 @@ return {
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
     opts = {
-      keymap = {
+      keymap = vim.tbl_deep_extend('force', vim.g.blink_cmp_keymap or {}, {
         -- 'default' (recommended) for mappings similar to built-in completions
         --   <c-y> to accept ([y]es) the completion.
         --    This will auto-import if your LSP supports it.
@@ -59,17 +59,9 @@ return {
         -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'enter',
 
-        -- Disable C-k keybind
-        ['<C-k>'] = { 'fallback' },
-
-        -- Rebind Previous Functionality
-        ['<C-p>'] = { 'select_prev', 'fallback' },
-        ['<S-Tab>'] = { 'select_prev', 'fallback' },
-        ['<Tab>'] = { 'select_next', 'fallback' },
-
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
-      },
+      }),
 
       appearance = {
         -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'

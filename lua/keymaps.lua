@@ -93,4 +93,12 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   end,
 })
 
+-- Blink CMP Keymaps
+vim.g.blink_cmp_keymap = {
+  ['<C-k>'] = { 'fallback' },
+  ['<C-p>'] = { 'select_prev', 'fallback' },
+  ['<S-Tab>'] = { 'select_prev', 'fallback' },
+  ['<Tab>'] = { 'select_next', 'fallback' },
+}
+
 -- vim: ts=2 sts=2 sw=2 et
