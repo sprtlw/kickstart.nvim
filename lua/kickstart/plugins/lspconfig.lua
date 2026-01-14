@@ -156,7 +156,7 @@ return {
           --
           -- This may be unwanted, since they displace some of your code
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-	     -- Enable inlay hints by default (specifically for rust for now)
+            -- Enable inlay hints by default (specifically for rust for now)
             if vim.bo[event.buf].filetype == 'rust' then
               vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
             end
@@ -225,7 +225,7 @@ return {
         -- ts_ls = {},
         --
 
-	jsonls = {
+        jsonls = {
           settings = {
             json = {
               schemas = require('schemastore').json.schemas(),

@@ -59,7 +59,7 @@ return {
         -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'enter',
 
-	        -- Disable C-k keybind
+        -- Disable C-k keybind
         ['<C-k>'] = { 'fallback' },
 
         -- Rebind Previous Functionality
