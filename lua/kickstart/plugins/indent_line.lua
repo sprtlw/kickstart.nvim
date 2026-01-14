@@ -11,6 +11,5 @@ return {
         show_end = false,
         highlight = { 'Function', 'Label' },
       },
-    },
   },
 }
