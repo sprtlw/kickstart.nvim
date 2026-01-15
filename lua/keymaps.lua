@@ -59,47 +59,8 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
--- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
--- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
--- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
--- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.hl.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function() vim.hl.on_yank { timeout = 200 } end,
-})
-
--- Restore cursor position on file open
-vim.api.nvim_create_autocmd('BufReadPost', {
-  desc = 'Restore cursor position on file open',
-  group = vim.api.nvim_create_augroup('kickstart-restore-cursor', { clear = true }),
-  pattern = '*',
-  callback = function()
-    local line = vim.fn.line '\'"'
-    if line > 1 and line <= vim.fn.line '$' then
-      vim.cmd 'normal! g\'"'
-    end
-  end,
-})
-
--- auto-create missing dirs when saving a file
-vim.api.nvim_create_autocmd('BufWritePre', {
-  desc = 'Auto-create missing dirs when saving a file',
-  group = vim.api.nvim_create_augroup('kickstart-auto-create-dir', { clear = true }),
-  pattern = '*',
-  callback = function()
-    local dir = vim.fn.expand '<afile>:p:h'
-    if vim.fn.isdirectory(dir) == 0 then
-      vim.fn.mkdir(dir, 'p')
-    end
-  end,
-})
-
+vim.keymap.set('n', '<C-M-h>', '<C-w>H', { desc = 'Move window to the left' })
+vim.keymap.set('n', '<C-M-l>', '<C-w>L', { desc = 'Move window to the right' })
+vim.keymap.set('n', '<C-M-j>', '<C-w>J', { desc = 'Move window to the lower' })
+vim.keymap.set('n', '<C-M-k>', '<C-w>K', { desc = 'Move window to the upper' })
 -- vim: ts=2 sts=2 sw=2 et
