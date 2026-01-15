@@ -49,6 +49,10 @@ vim.keymap.set({ 'n', 'v' }, '<leader>cu', '<Plug>NERDCommenterUncomment', { des
 vim.keymap.set({ 'n', 'v' }, '<leader>cl', '<Plug>NERDCommenterAlignLeft', { desc = 'Align Left' })
 vim.keymap.set({ 'n', 'v' }, '<leader>cb', '<Plug>NERDCommenterAlignBoth', { desc = 'Align Both' })
 
+-- CodeDiff
+vim.api.nvim_create_user_command('CD', 'CodeDiff <args>', { nargs = '*' })
+vim.keymap.set('n', '<leader>g', '<cmd>CodeDiff<CR>', { desc = 'CodeDiff (Git)' })
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
