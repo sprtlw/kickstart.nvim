@@ -61,7 +61,8 @@ return {
 
         -- Disable C-k keybind (insert mode overlap)
         ['<C-k>'] = { 'fallback' },
-        -- Rebind Previous Functionality
+
+        ['<Tab>'] = { 'select_next', 'fallback' },
         ['<C-p>'] = { 'select_prev', 'fallback' },
         ['<S-Tab>'] = { 'select_prev', 'fallback' },
 
