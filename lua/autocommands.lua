@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('kickstart-disable-comment-continuation', { clear = true }),
   pattern = '*',
-  callback = function() vim.opt_local.formatoptions:remove { 'r', 'o' } end,
+  callback = function() vim.opt_local.formatoptions:remove { 'c', 'r', 'o' } end,
 })
 
 -- Bold CursorLine for all themes
