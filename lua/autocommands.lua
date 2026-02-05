@@ -80,12 +80,30 @@ vim.api.nvim_create_autocmd('ColorScheme', {
       })
     end
 
-    -- Arrow from filename to devinfo section (right side arrow)
+    -- Arrows for right side sections - create separate arrows for each transition
     local devinfo_hl = vim.api.nvim_get_hl(0, { name = 'MiniStatuslineDevinfo' })
     local filename_hl = vim.api.nvim_get_hl(0, { name = 'MiniStatuslineFilename' })
-    vim.api.nvim_set_hl(0, 'MiniStatuslineDevinfoArrow', {
+    
+    -- Arrow from filename/middle to git section
+    vim.api.nvim_set_hl(0, 'StatuslineGitArrow', {
       fg = devinfo_hl.bg,
       bg = filename_hl.bg or 'NONE',
+    })
+    
+    -- Arrows between right-side sections (all use devinfo colors)
+    vim.api.nvim_set_hl(0, 'StatuslineDiagArrow', {
+      fg = devinfo_hl.bg,
+      bg = devinfo_hl.bg,
+    })
+    
+    vim.api.nvim_set_hl(0, 'StatuslineFileArrow', {
+      fg = devinfo_hl.bg,
+      bg = devinfo_hl.bg,
+    })
+    
+    vim.api.nvim_set_hl(0, 'StatuslineLocArrow', {
+      fg = devinfo_hl.bg,
+      bg = devinfo_hl.bg,
     })
   end,
 })

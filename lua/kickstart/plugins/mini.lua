@@ -45,24 +45,29 @@ return {
         local location_str = statusline.section_location {}
 
         -- Build statusline with arrows
-        -- Left side: mode with arrow
+        -- Left side: mode with arrow pointing right to filename
         local result = string.format('%%#%s# %s %%#%sArrow#%s%%#MiniStatuslineFilename# %s', 
           mode_hl, mode_str, mode_hl, sep_right, filename_str)
 
-        -- Middle: alignment and git info
+        -- Middle: alignment
         result = result .. '%='
         
-        -- Right side: arrows before sections
+        -- Right side: build sections with arrows pointing left before each section
+        -- Each section should have its own arrow for proper color transitions
         if git_str ~= '' then
-          result = result .. string.format('%%#MiniStatuslineDevinfoArrow#%s%%#MiniStatuslineDevinfo# %s ', sep_left, git_str)
+          result = result .. string.format('%%#StatuslineGitArrow#%s%%#MiniStatuslineDevinfo# %s ', 
+            sep_left, git_str)
         end
         
         if diagnostics_str ~= '' then
-          result = result .. string.format('%%#MiniStatuslineDevinfoArrow#%s%%#MiniStatuslineDevinfo# %s ', sep_left, diagnostics_str)
+          result = result .. string.format('%%#StatuslineDiagArrow#%s%%#MiniStatuslineDevinfo# %s ', 
+            sep_left, diagnostics_str)
         end
         
-        result = result .. string.format('%%#MiniStatuslineDevinfoArrow#%s%%#MiniStatuslineDevinfo# %s ', sep_left, fileinfo_str)
-        result = result .. string.format('%%#MiniStatuslineDevinfoArrow#%s%%#MiniStatuslineDevinfo# %s ', sep_left, location_str)
+        result = result .. string.format('%%#StatuslineFileArrow#%s%%#MiniStatuslineDevinfo# %s ', 
+          sep_left, fileinfo_str)
+        result = result .. string.format('%%#StatuslineLocArrow#%s%%#MiniStatuslineDevinfo# %s ', 
+          sep_left, location_str)
 
         return result
       end
