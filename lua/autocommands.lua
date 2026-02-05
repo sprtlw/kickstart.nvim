@@ -49,7 +49,6 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     -- Remove grey background from filename and middle parts for cleaner appearance
     -- Keep backgrounds for mode indicators, branch, and file type for visual distinction
     local statusline_groups = {
-      'MiniStatuslineFileinfo',
       'MiniStatuslineFilename',
       'MiniStatuslineInactive',
     }
