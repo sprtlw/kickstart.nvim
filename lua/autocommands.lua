@@ -46,18 +46,12 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   callback = function()
     vim.api.nvim_set_hl(0, 'CursorLine', { bg = 'none' })
     vim.api.nvim_set_hl(0, 'CursorLineNr', { bold = true })
-    -- Remove grey background from statusline for cleaner appearance
+    -- Remove grey background from filename and middle parts for cleaner appearance
+    -- Keep backgrounds for mode indicators, branch, and file type for visual distinction
     local statusline_groups = {
-      'MiniStatuslineDevinfo',
       'MiniStatuslineFileinfo',
       'MiniStatuslineFilename',
       'MiniStatuslineInactive',
-      'MiniStatuslineModeCommand',
-      'MiniStatuslineModeInsert',
-      'MiniStatuslineModeNormal',
-      'MiniStatuslineModeOther',
-      'MiniStatuslineModeReplace',
-      'MiniStatuslineModeVisual',
     }
     for _, group in ipairs(statusline_groups) do
       vim.api.nvim_set_hl(0, group, { bg = 'none' })
