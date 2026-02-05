@@ -55,5 +55,37 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     for _, group in ipairs(statusline_groups) do
       vim.api.nvim_set_hl(0, group, { bg = 'none' })
     end
+
+    -- Set up powerline arrow highlight groups for smooth transitions
+    -- Arrow from mode section to filename section
+    local mode_colors = {
+      { mode = 'Normal', next = 'Filename' },
+      { mode = 'Insert', next = 'Filename' },
+      { mode = 'Visual', next = 'Filename' },
+      { mode = 'Command', next = 'Filename' },
+      { mode = 'Replace', next = 'Filename' },
+      { mode = 'Other', next = 'Filename' },
+    }
+
+    for _, config in ipairs(mode_colors) do
+      local mode_hl_name = 'MiniStatuslineMode' .. config.mode
+      local next_hl_name = 'MiniStatusline' .. config.next
+      local mode_hl = vim.api.nvim_get_hl(0, { name = mode_hl_name })
+      local next_hl = vim.api.nvim_get_hl(0, { name = next_hl_name })
+      
+      -- Arrow highlight: foreground = mode background, background = next section background
+      vim.api.nvim_set_hl(0, mode_hl_name .. 'Arrow', {
+        fg = mode_hl.bg,
+        bg = next_hl.bg or 'NONE',
+      })
+    end
+
+    -- Arrow from filename to devinfo section (right side arrow)
+    local devinfo_hl = vim.api.nvim_get_hl(0, { name = 'MiniStatuslineDevinfo' })
+    local filename_hl = vim.api.nvim_get_hl(0, { name = 'MiniStatuslineFilename' })
+    vim.api.nvim_set_hl(0, 'MiniStatuslineDevinfoArrow', {
+      fg = devinfo_hl.bg,
+      bg = filename_hl.bg or 'NONE',
+    })
   end,
 })

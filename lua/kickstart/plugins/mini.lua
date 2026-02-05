@@ -17,12 +17,55 @@ return {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
+      -- Simple and easy statusline with powerline arrow styling
       local statusline = require 'mini.statusline'
+      
       -- set use_icons to true if you have a Nerd Font
       statusline.setup { use_icons = vim.g.have_nerd_font }
+
+      -- Powerline separator characters (require Nerd Font)
+      local sep_right = '' -- right arrow
+      local sep_left = ''  -- left arrow
+
+      -- Store the original section functions
+      local section_mode = statusline.section_mode
+      local section_git = statusline.section_git
+      local section_diagnostics = statusline.section_diagnostics
+      local section_filename = statusline.section_filename
+      local section_fileinfo = statusline.section_fileinfo
+
+      -- Override content function to add arrow separators
+      ---@diagnostic disable-next-line: duplicate-set-field
+      function statusline.active()
+        local mode_hl, mode_str = section_mode { trunc_width = 120 }
+        local git_str = section_git { trunc_width = 75 }
+        local diagnostics_str = section_diagnostics { trunc_width = 75 }
+        local filename_str = section_filename { trunc_width = 140 }
+        local fileinfo_str = section_fileinfo { trunc_width = 120 }
+        local location_str = statusline.section_location {}
+
+        -- Build statusline with arrows
+        -- Left side: mode with arrow
+        local result = string.format('%%#%s# %s %%#%sArrow#%s%%#MiniStatuslineFilename# %s', 
+          mode_hl, mode_str, mode_hl, sep_right, filename_str)
+
+        -- Middle: alignment and git info
+        result = result .. '%='
+        
+        -- Right side: arrows before sections
+        if git_str ~= '' then
+          result = result .. string.format('%%#MiniStatuslineDevinfoArrow#%s%%#MiniStatuslineDevinfo# %s ', sep_left, git_str)
+        end
+        
+        if diagnostics_str ~= '' then
+          result = result .. string.format('%%#MiniStatuslineDevinfoArrow#%s%%#MiniStatuslineDevinfo# %s ', sep_left, diagnostics_str)
+        end
+        
+        result = result .. string.format('%%#MiniStatuslineDevinfoArrow#%s%%#MiniStatuslineDevinfo# %s ', sep_left, fileinfo_str)
+        result = result .. string.format('%%#MiniStatuslineDevinfoArrow#%s%%#MiniStatuslineDevinfo# %s ', sep_left, location_str)
+
+        return result
+      end
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
