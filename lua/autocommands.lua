@@ -47,15 +47,20 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     vim.api.nvim_set_hl(0, 'CursorLine', { bg = 'none' })
     vim.api.nvim_set_hl(0, 'CursorLineNr', { bold = true })
     -- Remove grey background from statusline for cleaner appearance
-    vim.api.nvim_set_hl(0, 'MiniStatuslineDevinfo', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'MiniStatuslineFileinfo', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'MiniStatuslineFilename', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'MiniStatuslineInactive', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'MiniStatuslineModeCommand', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'MiniStatuslineModeInsert', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'MiniStatuslineModeNormal', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'MiniStatuslineModeOther', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'MiniStatuslineModeReplace', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'MiniStatuslineModeVisual', { bg = 'none' })
+    local statusline_groups = {
+      'MiniStatuslineDevinfo',
+      'MiniStatuslineFileinfo',
+      'MiniStatuslineFilename',
+      'MiniStatuslineInactive',
+      'MiniStatuslineModeCommand',
+      'MiniStatuslineModeInsert',
+      'MiniStatuslineModeNormal',
+      'MiniStatuslineModeOther',
+      'MiniStatuslineModeReplace',
+      'MiniStatuslineModeVisual',
+    }
+    for _, group in ipairs(statusline_groups) do
+      vim.api.nvim_set_hl(0, group, { bg = 'none' })
+    end
   end,
 })
