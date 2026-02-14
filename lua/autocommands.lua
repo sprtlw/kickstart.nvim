@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
--- auto-create missing dirs when saving a file
+-- Auto-create missing dirs when saving a file
 vim.api.nvim_create_autocmd('BufWritePre', {
   desc = 'Auto-create missing dirs when saving a file',
   group = vim.api.nvim_create_augroup('kickstart-auto-create-dir', { clear = true }),
@@ -40,11 +40,19 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function() vim.opt_local.formatoptions:remove { 'c', 'r', 'o' } end,
 })
 
--- Bold CursorLine for all themes
 vim.api.nvim_create_autocmd('ColorScheme', {
   group = vim.api.nvim_create_augroup('kickstart-colorscheme', { clear = true }),
   callback = function()
+    -- Bold Cursorline
     vim.api.nvim_set_hl(0, 'CursorLine', { bg = 'none' })
     vim.api.nvim_set_hl(0, 'CursorLineNr', { bold = true })
+    -- Remove background for filename, inactive space; cleaner look
+    local statusline_groups = {
+      'MiniStatuslineFilename',
+      'MiniStatuslineInactive',
+    }
+    for _, group in ipairs(statusline_groups) do
+      vim.api.nvim_set_hl(0, group, { bg = 'none' })
+    end
   end,
 })
